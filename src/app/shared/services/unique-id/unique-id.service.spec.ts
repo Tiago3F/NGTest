@@ -29,4 +29,16 @@ describe(UniqueIdService.name, () => {
     expect(service.getNumberOfGeneratedUniqueIds()).toBe(2)
   })
 
+  // Testando se o prefixo não vai ser null, undefined ou ""
+  it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name} should throw when called with empty`, () => {
+    const emptyValues = [null, undefined, ""]
+    emptyValues.forEach(emptyValues => {
+      expect(() => service.generateUniqueIdWithPrefix(emptyValues)).toThrow()
+    })
+
+    // expect(() => service.generateUniqueIdWithPrefix(null)).toThrow()
+    // expect(() => service.generateUniqueIdWithPrefix(undefined)).toThrow()
+    // expect(() => service.generateUniqueIdWithPrefix("")).toThrow()
+  })
+
 })
