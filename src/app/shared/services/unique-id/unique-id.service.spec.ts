@@ -10,7 +10,6 @@ describe(UniqueIdService.name, () => {
   it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name} should generate id when called with prefix`, () => {
     const id = service.generateUniqueIdWithPrefix("app")
     expect(id.startsWith('app-')).toBeTrue()
-
   })
 
   // Testando se não há IDs repetidos
@@ -31,9 +30,9 @@ describe(UniqueIdService.name, () => {
 
   // Testando se o prefixo não vai ser null, undefined ou ""
   it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name} should throw when called with empty`, () => {
-    const emptyValues = [null, undefined, ""]
+    const emptyValues = [null, undefined, "", "0", "1"]
     emptyValues.forEach(emptyValues => {
-      expect(() => service.generateUniqueIdWithPrefix(emptyValues)).toThrow()
+      expect(() => service.generateUniqueIdWithPrefix(emptyValues)).withContext(`Empty value: ${emptyValues}`).toThrow()
     })
 
     // expect(() => service.generateUniqueIdWithPrefix(null)).toThrow()
